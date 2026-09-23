@@ -1,0 +1,25 @@
+package com.Learning.SpringAICode.controller;
+
+
+import org.springframework.ai.openai.OpenAiChatModel;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RestController;
+
+@RestController
+public class OpenAIcontroller {
+
+    private OpenAiChatModel chatModel;
+
+    public OpenAIcontroller(OpenAiChatModel chatModel){
+        this.chatModel = chatModel;
+    }
+
+    @GetMapping("api/{message}")
+    public String getAnswers(@PathVariable String message){
+
+        String response = chatModel.call(message);
+
+        return response;
+    }
+}
